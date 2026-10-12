@@ -118,14 +118,14 @@ export const profile: Profile = {
   // Bilder legst du in den Ordner public/projects (siehe README.md).
   projects: [
     {
-      title: "Aktuelles Projekt",
-      industry: "Wird in Kürze ergänzt",
+      title: "Website-System für lokale Unternehmen",
+      industry: "Handwerk, Gastronomie, Praxen und Dienstleister",
       description:
-        "Hier stelle ich in Kürze mein aktuelles Projekt vor. Es befindet sich gerade in der Umsetzung.",
-      technologies: [],
-      image: "", // z. B. "/projects/mein-projekt.jpg"
-      link: "", // z. B. "https://www.mein-projekt.de"
-      inProgress: true,
+        "Ein wiederverwendbares System für Firmenwebsites: Über eine zentrale Konfiguration entsteht in wenigen Stunden eine komplette Website mit Terminbuchung, Kontaktformular, Preisen, FAQ und Bewertungen. Vorlagen für sechs Branchen, gezeigt am erfundenen Handwerksbetrieb „Brandt Haustechnik“.",
+      technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion"],
+      image: "", // z. B. "/projects/website-system.jpg"
+      link: "", // Link zur Demo, sobald sie online ist
+      label: "Eigenes Projekt",
     },
     // Beispiel für ein fertiges Projekt:
     // {

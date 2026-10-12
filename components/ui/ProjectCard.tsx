@@ -8,9 +8,7 @@ import { cn } from "@/lib/cn";
  * Platzhalter-Vorschau im Stil eines Browserfensters – wird angezeigt,
  * solange für ein Projekt noch kein Bild hinterlegt ist.
  */
-function BrowserCover({ title, link, badge }: { title: string; link?: string; badge?: string }) {
-  const address = link ? prettyUrl(link) : "vorschau-folgt";
-
+function BrowserCover({ title, address, badge }: { title: string; address: string; badge?: string }) {
   return (
     <div aria-hidden="true" className="absolute inset-0 flex flex-col p-4 sm:p-6">
       <div className="flex items-center gap-1.5">
@@ -64,7 +62,11 @@ export function ProjectCard({ project }: { project: Project }) {
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
           />
         ) : (
-          <BrowserCover title={title} link={link} badge={badge} />
+          <BrowserCover
+            title={title}
+            address={link ? prettyUrl(link) : inProgress ? "vorschau-folgt" : ""}
+            badge={badge}
+          />
         )}
         {image && badge ? <Badge className="absolute right-4 bottom-4">{badge}</Badge> : null}
       </div>
