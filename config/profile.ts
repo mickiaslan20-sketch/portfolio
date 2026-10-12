@@ -200,7 +200,7 @@ export const profile: Profile = {
     // Formular-ID von formspree.io (z. B. "xyzabcde"), siehe README.md.
     // Solange das Feld leer ist, öffnet das Formular das E-Mail-Programm
     // des Besuchers mit der vorbereiteten Nachricht.
-    formspreeId: "",
+    formspreeId: "mppqjyja",
     ctaLabel: "Kontakt aufnehmen",
   },
 
