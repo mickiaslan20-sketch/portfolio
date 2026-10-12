@@ -124,7 +124,7 @@ export const profile: Profile = {
         "Ein wiederverwendbares System für Firmenwebsites: Über eine zentrale Konfiguration entsteht in wenigen Stunden eine komplette Website mit Terminbuchung, Kontaktformular, Preisen, FAQ und Bewertungen. Vorlagen für sechs Branchen, gezeigt am erfundenen Handwerksbetrieb „Brandt Haustechnik“.",
       technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion"],
       image: "", // z. B. "/projects/website-system.jpg"
-      link: "", // Link zur Demo, sobald sie online ist
+      link: "https://website-system.netlify.app",
       label: "Eigenes Projekt",
     },
     // Beispiel für ein fertiges Projekt:
