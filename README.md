@@ -188,7 +188,7 @@ Falls noch nicht geschehen:
 1. Gehe auf [netlify.com](https://www.netlify.com) und registriere dich mit **„Sign up with GitHub“**.
 2. Wähle **„Add new project“** → **„Import an existing project“** → **GitHub**.
 3. Erlaube Netlify den Zugriff und wähle das Repository `portfolio`.
-4. Netlify erkennt Next.js automatisch. Nichts ändern, einfach auf **„Deploy“** klicken.
+4. Die Einstellungen stehen bereits in der Datei `netlify.toml`. Nichts ändern, einfach auf **„Deploy“** klicken.
 5. Nach etwa zwei Minuten ist die Website online unter einer Adresse wie `https://zufallsname.netlify.app`.
 6. Unter **„Project configuration“** → **„Change project name“** kannst du einen schöneren Namen wählen, z. B. `mikkel-aslan` → `https://mikkel-aslan.netlify.app`.
 
@@ -287,8 +287,9 @@ portfolio/
 │   ├── sections/           ← die Bereiche der Startseite
 │   └── ui/                 ← wiederverwendbare Bausteine (Buttons, Karten, Formular …)
 ├── lib/                    ← kleine Hilfsfunktionen
-└── public/
-    └── projects/           ← Vorschaubilder deiner Projekte
+├── public/
+│   └── projects/           ← Vorschaubilder deiner Projekte
+└── netlify.toml            ← Einstellungen für die Veröffentlichung bei Netlify
 ```
 
 ### Häufige Erweiterungen

@@ -1,0 +1,18 @@
+# Einstellungen für Netlify (Hosting)
+# Netlify liest diese Datei bei jeder Veröffentlichung automatisch.
+# Du musst hier normalerweise nichts ändern.
+
+[build]
+  # Baut die Next.js-Website
+  command = "npm run build"
+  # Ordner, in dem Next.js die fertige Website ablegt
+  publish = ".next"
+
+[build.environment]
+  # Node.js-Version für den Build (Next.js braucht mindestens 20.9)
+  NODE_VERSION = "22"
+
+# Offizieller Next.js-Adapter von Netlify: sorgt dafür, dass Seiten,
+# Bilder und das Vorschaubild für Social Media richtig funktionieren.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
