@@ -1,0 +1,9 @@
+In diesen Ordner kommen die Vorschaubilder deiner Projekte.
+
+Empfehlung:
+- Format: JPG oder PNG (Next.js wandelt sie automatisch in moderne Formate um)
+- Größe: 1600 × 1000 Pixel (Seitenverhältnis 16:10)
+- Dateiname: kleingeschrieben, ohne Leerzeichen und Umlaute, z. B. baeckerei-schmitt.jpg
+
+Danach in config/profile.ts beim Projekt eintragen:
+  image: "/projects/baeckerei-schmitt.jpg",

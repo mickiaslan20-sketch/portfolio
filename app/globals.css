@@ -1,0 +1,303 @@
+@import "tailwindcss";
+
+/*
+ * ============================================================================
+ *  Globale Styles
+ * ============================================================================
+ *  Farben werden als CSS-Variablen definiert und unten für den Dark Mode
+ *  überschrieben. Die Akzentfarbe kommt aus config/profile.ts (site.accentColor)
+ *  und wird im Layout gesetzt – hier steht nur ein Ersatzwert.
+ */
+
+/* Dark Mode wird über die Klasse "dark" auf <html> gesteuert. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Farben und Schrift als Tailwind-Klassen verfügbar machen,
+   z. B. bg-canvas, text-muted, border-line, bg-accent, text-accent-ink */
+@theme inline {
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-foreground: var(--accent-foreground);
+}
+
+:root {
+  --accent: #2e5bff;
+  --accent-foreground: #ffffff;
+  /* Akzentfarbe für Text und Symbole */
+  --accent-ink: var(--accent);
+
+  --canvas: #ffffff; /* Seitenhintergrund */
+  --surface: #f6f6f6; /* leicht abgesetzte Flächen */
+  --ink: #000000; /* Haupttext */
+  --muted: #5e5e5e; /* Nebentext */
+  --line: #e6e6e6; /* Linien und Rahmen */
+
+  /* Dauer der Ladeanimation – danach starten die Einblendungen im Startbereich */
+  --intro-delay: 0.85s;
+
+  color-scheme: light;
+}
+
+.dark {
+  /* Im Dunkelmodus wird die Akzentfarbe für Text etwas aufgehellt */
+  --accent-ink: color-mix(in oklab, var(--accent) 62%, white);
+
+  --canvas: #000000;
+  --surface: #0f0f0f;
+  --ink: #f5f5f5;
+  --muted: #a0a0a0;
+  --line: #262626;
+
+  color-scheme: dark;
+}
+
+/* Ladeanimation wurde in dieser Sitzung schon gezeigt */
+.skip-intro {
+  --intro-delay: 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --intro-delay: 0s;
+  }
+}
+
+/* ─── Grundlagen ──────────────────────────────────────────────────────────── */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Abstand für den fixierten Header beim Springen zu einem Bereich */
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--accent) 24%, transparent);
+  }
+
+  /* Gut sichtbarer Fokus für die Bedienung per Tastatur */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+}
+
+/* ─── Komponenten ─────────────────────────────────────────────────────────── */
+
+@layer components {
+  /* „Zum Inhalt springen“ – erscheint nur bei Tastaturbedienung */
+  .skip-link {
+    position: fixed;
+    left: 1rem;
+    top: -4rem;
+    z-index: 200;
+    padding: 0.625rem 1rem;
+    border-radius: 0.75rem;
+    background: var(--ink);
+    color: var(--canvas);
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: top 0.2s ease;
+  }
+
+  .skip-link:focus {
+    top: 1rem;
+  }
+
+  /* Unterstrich, der beim Überfahren von links einläuft */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition: background-size 0.3s ease;
+  }
+
+  .link-underline:hover {
+    background-size: 100% 1px;
+  }
+
+  /* Pulsierender Punkt für „live“ */
+  .live-dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: inherit;
+    animation: live-pulse 2.4s ease-out infinite;
+  }
+
+  /* Texte auf Impressum und Datenschutz */
+  .legal h2 {
+    margin-top: 2.75rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  .legal h3 {
+    margin-top: 1.75rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .legal p,
+  .legal ul,
+  .legal address {
+    margin-top: 0.875rem;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  .legal address {
+    font-style: normal;
+  }
+
+  .legal ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+  }
+
+  .legal li + li {
+    margin-top: 0.375rem;
+  }
+
+  .legal a {
+    color: var(--accent-ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .legal strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+}
+
+/* ─── Ladeanimation ───────────────────────────────────────────────────────── */
+/* Reines CSS: funktioniert sofort, auch bevor JavaScript geladen ist. */
+
+.intro-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: var(--canvas);
+  pointer-events: none;
+  animation: intro-out 0.45s ease 0.8s forwards;
+}
+
+.intro-loader__name {
+  display: block;
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  animation: intro-rise 0.5s ease both;
+}
+
+.intro-loader__bar {
+  display: block;
+  width: 8.5rem;
+  height: 2px;
+  margin-top: 1rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--line);
+}
+
+.intro-loader__bar > span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transform-origin: left;
+  animation: intro-bar 0.7s cubic-bezier(0.65, 0, 0.35, 1) 0.05s both;
+}
+
+.skip-intro .intro-loader {
+  display: none;
+}
+
+/* ─── Einblendung im Startbereich ─────────────────────────────────────────── */
+/* Verzögerung pro Element über die Variable --d (siehe Hero.tsx) */
+
+.hero-in {
+  animation: hero-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--intro-delay) + var(--d, 0s));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-loader {
+    display: none;
+  }
+
+  .hero-in,
+  .live-dot::after {
+    animation: none;
+  }
+}
+
+@keyframes intro-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes intro-rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@keyframes intro-bar {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+@keyframes live-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
