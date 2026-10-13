@@ -207,7 +207,7 @@ export const profile: Profile = {
   // ─── Social Media ─────────────────────────────────────────────────────────
   // Weitere Profile einfach ergänzen, z. B.:
   // { label: "LinkedIn", url: "https://www.linkedin.com/in/dein-name" },
-  socials: [{ label: "GitHub", url: "https://github.com/mickiaslan20-sketch" }],
+  socials: [],
 
   // ─── Impressum ────────────────────────────────────────────────────────────
   legal: {

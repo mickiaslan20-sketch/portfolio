@@ -176,7 +176,7 @@ Deshalb beschreibt diese Anleitung **Netlify**. Prüfe die aktuellen Bedingungen
 Falls noch nicht geschehen:
 
 1. Auf github.com oben rechts auf **„+“** → **„New repository“**.
-2. Name: `portfolio`, Sichtbarkeit: **Public** (oder Private), **keine** README, .gitignore oder Lizenz hinzufügen → **„Create repository“**.
+2. Name: `portfolio`, Sichtbarkeit: **Private** (dann sieht niemand deinen Code, die Website bleibt trotzdem öffentlich), **keine** README, .gitignore oder Lizenz hinzufügen → **„Create repository“**.
 3. Auf der nächsten Seite auf den Link **„uploading an existing file“** klicken.
 4. Den **Inhalt** des entpackten Projektordners hineinziehen (alle Dateien und Ordner, nicht den Ordner selbst).
 5. Unten auf **„Commit changes“** klicken.
